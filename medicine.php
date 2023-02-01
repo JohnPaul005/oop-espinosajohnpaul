@@ -10,7 +10,7 @@
         $this->dose = $dose;
        }
        function setType(){
-        $this->type = $type
+        $this->type = $type;
        }
        function setExpirationDate(){
         $this->expirationDate = $expirationDate
