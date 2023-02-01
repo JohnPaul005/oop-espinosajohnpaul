@@ -1,37 +1,39 @@
-<?php 
+<?php
     require_once "Medicine.php";
     require_once "products.php";
 
+
     class Cart extends Medicine{
         private $cartItems = array();
-        
+    
         function addToCart($item){
             $this->cartItems[] = $item;
         }
-
         function viewCart(){
             $arrCartItems = $this->cartItems;
-            foreach ($arrCartItems as $key => $item){
-                echo
-                '
-                <ul>
-                    <li>Name: '. $item->getName() . '</li>
-                    <li>Description: '. $item->getDescription() . '</li>
-                    <li>Price: ₱ '. number_format ($item->getPrice(), 2) . '</li>
-                    <li>Dose: '. $item->getDose() . '</li>
-                    <li>Type: '. $item->getType() . '</li>
-                    <li>Exp Date: '. $item->getExpirationDate() . '</li>
-                    <li>SRP: '. $item->computeSRP() . '</li>
+            foreach ($arrCartItems as $key => $Value){
+                echo 
+                '<ul>
+                    <li>Name: ' . $Value->getName() . '</li>
+                    <li>Description: ' . $Value->getDescription() . '</li>
+                    <li>Price: ₱ ' . number_format($Value->getPrice(), 2 ). '</li>
+                    <li>Dose: ' . $Value->getDose() . '</li>
+                    <li>Type: ' . $Value->getType() . '</li>
+                    <li>Exp Date: ' . $Value->getExpirationDate() . '</li>
+                    <li>SRP: ' . $Value->computeSRP() . '</li>
                 </ul>
                 <hr>';
             }
+
         }
         function computeTotal(){
-            $total = 0;
-            foreach($this->cartItems as $key => $item){
-                $total += $item->computeSRP();
+            $totalPrice = 0;
+            foreach($this->cartItems as $key => $Value){
+                $totalPrice += $Value->computeSRP();
             }
-            echo '<b>Total Cart Amount: </b>₱' . number_format($total,2);
+            echo '<b>Total Cart Amount: </b> ₱ ' . number_format($totalPrice,2);
         }
+    
     }
+
 ?>
